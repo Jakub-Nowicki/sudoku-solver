@@ -27,6 +27,8 @@
    ```bash
    python app.py
    
+This will start the Flask server on `localhost:5000`. Open your web browser and navigate to [http://localhost:5000](http://localhost:5000) to use the application.
+   
 ## Usage
 
 - **Navigate to the home page** and enter numbers into the Sudoku grid.
