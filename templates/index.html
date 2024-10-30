@@ -1,0 +1,18 @@
+{% extends "base.html"  %}
+{% block body %}
+<h1>Sudoku Solver</h1>
+<form action="/update" method="post">
+    <table>
+        {% for i in range(9) %}
+        <tr>
+            {% for j in range(9) %}
+            <td>
+                <input type="text" name="cell-{{i}}-{{j}}" value="{{ grid[i][j]}}" >
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    <button type="submit">Solve</button>
+</form>
+{% endblock %}
