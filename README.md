@@ -35,10 +35,12 @@ This will start the Flask server on `localhost:5000`. Open your web browser and 
 - **Click the "Solve" button** to see the solver in action. The solution, if available, will be displayed in the grid.
 - **Use the "Reset" button** to clear the grid and enter a new puzzle.
 
+## Website:
+<img width="600" alt="Screenshot 2024-10-30 at 11 23 41" src="https://github.com/user-attachments/assets/e2f6d157-e33f-4ab3-bba2-04d9f6b9b003">
+
 ## Contributing
 
 Contributions to this project are welcome! Here are a few ways you can help:
-
 - **Report bugs**: If you find a bug, please report it by opening an issue.
 - **Add new features**: Have an idea for a new feature? Contribute your ideas through pull requests.
 - **Improve the documentation**: Good documentation makes any project easier to understand and use. Enhance the documentation to help newcomers.
