@@ -44,9 +44,9 @@ This will start the Flask server on `localhost:5000`. Open your web browser and 
 [//]: # (<img width="270" alt="Screenshot 2024-10-30 at 11 29 08" src="https://github.com/user-attachments/assets/ad2ec2bf-42a9-4cd7-b8b2-a29df1954168">)
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/e2f6d157-e33f-4ab3-bba2-04d9f6b9b003" alt="First Image" width="33%" style="margin-right: 10px;"/>
-  <img src="https://github.com/user-attachments/assets/fab7a3c5-9d3f-4af0-91e1-aafb30bf6db5" alt="Second Image" width="33%" style="margin-right: 10px;"/>
-  <img src="https://github.com/user-attachments/assets/ad2ec2bf-42a9-4cd7-b8b2-a29df1954168" alt="Third Image" width="33%"/>
+  <img src="https://github.com/user-attachments/assets/e2f6d157-e33f-4ab3-bba2-04d9f6b9b003" alt="First Image" width="31%" style="margin-right: 10px;"/>
+  <img src="https://github.com/user-attachments/assets/fab7a3c5-9d3f-4af0-91e1-aafb30bf6db5" alt="Second Image" width="31%" style="margin-right: 10px;"/>
+  <img src="https://github.com/user-attachments/assets/ad2ec2bf-42a9-4cd7-b8b2-a29df1954168" alt="Third Image" width="31%"/>
 </p>
 
 
