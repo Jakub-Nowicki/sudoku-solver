@@ -36,7 +36,10 @@ This will start the Flask server on `localhost:5000`. Open your web browser and 
 - **Use the "Reset" button** to clear the grid and enter a new puzzle.
 
 ## Website:
-<img width="600" alt="Screenshot 2024-10-30 at 11 23 41" src="https://github.com/user-attachments/assets/e2f6d157-e33f-4ab3-bba2-04d9f6b9b003">
+<img width="330" alt="Screenshot 2024-10-30 at 11 23 41" src="https://github.com/user-attachments/assets/e2f6d157-e33f-4ab3-bba2-04d9f6b9b003">
+<img width="330" alt="Screenshot 2024-10-30 at 11 29 04" src="https://github.com/user-attachments/assets/fab7a3c5-9d3f-4af0-91e1-aafb30bf6db5">
+<img width="330" alt="Screenshot 2024-10-30 at 11 29 08" src="https://github.com/user-attachments/assets/ad2ec2bf-42a9-4cd7-b8b2-a29df1954168">
+
 
 ## Contributing
 
