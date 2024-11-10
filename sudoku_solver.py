@@ -69,7 +69,7 @@ def valid(bo, num, pos): #checking if the number is valid
                 return False
     
     return True
-            
+
 app = Flask(__name__)
 
 grid = [['' for _ in range(9)] for _ in range(9)]
@@ -88,8 +88,8 @@ def update():
         for j in range(9):
             grid[i][j] = request.form.get(f'cell-{i}-{j}', '') #getting values from the grid
 
-    
-    
+
+
     for i in range(9):
         for j in range(9):
             if grid[i][j] != '':
@@ -98,7 +98,7 @@ def update():
             else:
                 grid[i][j] = 0
     solve(grid) #solving the grid
-    
+
     return render_template('update.html', grid=grid, values=values)
 
 @app.route('/solve_grid', methods =['POST'])
