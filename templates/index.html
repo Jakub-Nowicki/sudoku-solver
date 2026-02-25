@@ -209,6 +209,17 @@
             transform: translateY(-2px);
         }
 
+        .btn-instant {
+            background: linear-gradient(135deg, #a855f7, #c084fc);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(168, 85, 247, 0.3);
+        }
+        .btn-instant:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(168, 85, 247, 0.4);
+        }
+        .btn-instant:active { transform: translateY(0); }
+
         .btn-sample {
             background: transparent;
             color: var(--dim);
@@ -257,7 +268,8 @@
         </div>
 
         <div class="controls">
-            <button class="btn btn-solve" id="solveBtn" onclick="solvePuzzle()">Solve</button>
+            <button class="btn btn-solve" id="solveBtn" onclick="solvePuzzle(false)">Solve</button>
+            <button class="btn btn-instant" id="instantBtn" onclick="solvePuzzle(true)">Instant</button>
             <button class="btn btn-reset" id="resetBtn" onclick="resetBoard()">Reset</button>
             <button class="btn btn-sample" onclick="loadSample()">Sample</button>
         </div>
@@ -386,10 +398,11 @@
             s.className = 'status ' + (cls || '');
         }
 
-        async function solvePuzzle() {
+        async function solvePuzzle(instant = false) {
             if (solving) return;
             solving = true;
             document.getElementById('solveBtn').disabled = true;
+            document.getElementById('instantBtn').disabled = true;
             setStatus('Solving...', 'active');
 
             document.querySelectorAll('.solved, .solving-active').forEach(el => {
@@ -413,7 +426,15 @@
                 const data = await res.json();
 
                 if (data.success && data.solved.length > 0) {
-                    await animateSolution(data.solved);
+                    if (instant) {
+                        for (const {r, c, v} of data.solved) {
+                            const el = document.getElementById(`c-${r}-${c}`);
+                            el.value = v;
+                            el.classList.add('solved');
+                        }
+                    } else {
+                        await animateSolution(data.solved);
+                    }
                     setStatus(`Solved — ${data.solved.length} cells filled`, 'active');
                 } else {
                     setStatus('No solution found — check your input', 'error');
@@ -423,6 +444,7 @@
             }
             solving = false;
             document.getElementById('solveBtn').disabled = false;
+            document.getElementById('instantBtn').disabled = false;
         }
 
         async function animateSolution(solved) {
