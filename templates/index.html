@@ -235,6 +235,14 @@
         }
         .status.active { color: var(--solve-color); }
         .status.error { color: var(--error); }
+
+        .cell input.conflict {
+            background: rgba(255, 92, 106, 0.15);
+            box-shadow: inset 0 0 0 2px var(--error);
+            color: var(--error);
+            z-index: 2;
+            position: relative;
+        }
     </style>
 </head>
 <body>
@@ -297,9 +305,47 @@
             const val = e.target.value;
             if (!/^[1-9]$/.test(val)) {
                 e.target.value = '';
-                e.target.classList.remove('given');
-            } else {
-                e.target.classList.add('given');
+                e.target.classList.remove('given', 'conflict');
+                revalidateAll();
+                return;
+            }
+            e.target.classList.add('given');
+            revalidateAll();
+        }
+
+        function getConflicts() {
+            const vals = {};
+            const conflicts = new Set();
+            for (let i = 0; i < 9; i++) {
+                for (let j = 0; j < 9; j++) {
+                    const v = document.getElementById(`c-${i}-${j}`).value;
+                    if (!v) continue;
+                    const box = `${Math.floor(i/3)}-${Math.floor(j/3)}`;
+                    const keys = [`r${i}-${v}`, `c${j}-${v}`, `b${box}-${v}`];
+                    for (const k of keys) {
+                        if (vals[k]) {
+                            conflicts.add(vals[k]);
+                            conflicts.add(`${i}-${j}`);
+                        } else {
+                            vals[k] = `${i}-${j}`;
+                        }
+                    }
+                }
+            }
+            return conflicts;
+        }
+
+        function revalidateAll() {
+            const conflicts = getConflicts();
+            for (let i = 0; i < 9; i++) {
+                for (let j = 0; j < 9; j++) {
+                    const el = document.getElementById(`c-${i}-${j}`);
+                    if (conflicts.has(`${i}-${j}`)) {
+                        el.classList.add('conflict');
+                    } else {
+                        el.classList.remove('conflict');
+                    }
+                }
             }
         }
 
@@ -350,6 +396,13 @@
                 el.classList.remove('solved', 'solving-active');
             });
 
+            if (getConflicts().size > 0) {
+                setStatus('Fix conflicts before solving', 'error');
+                solving = false;
+                document.getElementById('solveBtn').disabled = false;
+                return;
+            }
+
             const grid = getGrid();
             try {
                 const res = await fetch('/solve', {
@@ -397,7 +450,7 @@
                 for (let j = 0; j < 9; j++) {
                     const el = document.getElementById(`c-${i}-${j}`);
                     el.value = '';
-                    el.classList.remove('given', 'solved', 'solving-active');
+                    el.classList.remove('given', 'solved', 'solving-active', 'conflict');
                 }
             }
             setStatus('');
